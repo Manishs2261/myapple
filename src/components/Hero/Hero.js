@@ -1,59 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import applefirst from "../../assets/applefirst.jpg";
-import women from "../../assets/women.jpg";
-import hello from "../../assets/hello.jpg";
-import earth from "../../assets/earth.jpg";
-import icon from "../../assets/icon.jpg";
-import mac from "../../assets/mac.jpg";
-import mobile from "../../assets/mobile.jpg";
-import appleicon from "../../assets/appleicon.jpg"
-import { IoMdAdd } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
+import air13 from "../../assets/air13.png";
+import air14 from "../../assets/air14.png";
+import { MdOutlinePayment } from "react-icons/md";
+import "./hero.css";
+import { FaApple } from "react-icons/fa";
+import { PiLaptopDuotone } from "react-icons/pi";
+import { HiOutlineComputerDesktop } from "react-icons/hi2";
+import { GrDeliver } from "react-icons/gr";
+import { LiaPeopleCarrySolid } from "react-icons/lia";
+import applepc from "../../assets/applepc.png";
+import laptopmouse from "../../assets/laptopmouse.png";
+import desktop from "../../assets/desktop.png";
+import macpro from "../../assets/macproultra.png";
+import macstudio from "../../assets/macstudio.png";
+import minichip from "../../assets/minichip.png";
+import applestar from "../../assets/applestar.png";
+import GetToKnownMac from "../GetToKnownMac/GetToKnownMac";
+import Laptops from "../Laptops/Laptops";
+import Desktops from "../Desktops/Desktops";
+import Display from "../Display/Display";
+import WhyAppleMac from "../WhyAppleMac/WhyAppleMac";
+import Significant from "../Significant/Significant";
+import MacEssentials from "../MacEssentials/MacEssentials";
 
 const Hero = () => {
-  const item = [
-    {
-      title: "Getting Started",
-      subtitle: "Easy to use. Easy to love.",
-      image: hello,
-      color:"text-white"
-    },
-    {
-      title: "Performance and Battery Life",
-      subtitle: "Go fast. Go far.",
-      image: women,
-      color:"text-white"
-    },
-    {
-      title: "Mac and iPhone",
-      subtitle: "Dream team.",
-      image: mobile,
-      color:"text-black"
-    },
-    {
-      title: "Compatibility",
-      subtitle: "Mac runs your favourite apps.",
-      image: icon,
-      color:"text-black"
-    },
-    {
-      title: "Privacy and Security",
-      subtitle: `Your business is nobody else’s.`,
-      image: appleicon,
-      color:"text-white"
-    },
-    {
-      title: "Durability",
-      subtitle: "Built to stand the test of time.",
-      image: mac,
-      color:"text-black"
-    },
-    {
-        title: "Apple Values",
-        subtitle: "Our values drive everything we do.",
-        image: earth,
-        color:"text-black"
-      },
-  ];
+
+  const [activeTab, setActiveTab] = useState(0); // Default to first tab
+
+  const tabs = ["Laptops", "Desktops", "Displays"];
 
   return (
     <div>
@@ -67,37 +43,71 @@ const Hero = () => {
       </div>
 
       <div className="justify-center w-full items-center flex p-12">
-        <img className="rounded-3xl" src={applefirst} alt="appleimage" />
+        <img
+          className="rounded-3xl w-full h-[600px]"
+          src={applefirst}
+          alt="appleimage"
+        />
       </div>
 
-      <h1 className="text-6xl font-medium m-12">Get to know Mac.</h1>
+      <GetToKnownMac/>
 
-      <div className="overflow-x-auto whitespace-nowrap">
-        {item.map((item, index) => (
-          <div key={index} className="inline-block p-4">
-            <div className="relative rounded-3xl  w-64">
-              {/* Image with rounded corners */}
-              <img className="rounded-3xl  " src={item.image} alt="appleimage" />
-
-              {/* Text overlay positioned at the top */}
-              <div className="absolute top-0 left-0 p-4">
-              <h2 className={`text-sm ${item.color}`}>{item.title}</h2>
-
-        <h2 className={`${item.color} text-lg font-medium break-words`}>
-                  {item.subtitle}
-                </h2>
-              </div>
-
-              {/* Icon positioned at the bottom */}
-              <div className="absolute bottom-0 right-0 m-4 p-2   bg-yellow-950 bg-opacity-60 rounded-full">
-                <IoMdAdd className="text-white text-3xl" size={20} />
-              </div>
-            </div>
+      <div className="w-full h-auto bg-slate-50  p-28">
+        <div className="flex justify-between ">
+          <h1 className="text-5xl font-medium ">Explore the line-up.</h1>
+          <div className="flex items-center">
+            <h5 className=" text-blue-600 ">Compare all models</h5>{" "}
+            {/* <div className="text-blue-600"> */}
+            <IoIosArrowForward className="text-blue-600" size={10} />
+            {/* </div> */}
           </div>
-        ))}
+        </div>
+
+        <div className="w-full max-w-md pt-16">
+          {/* Tab Header */}
+          <div className="flex bg-white rounded-full justify-evenly">
+            {tabs.map((tab, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveTab(index)}
+                className={`py-2  text-sm font-medium focus:outline-none ${
+                  activeTab === index
+                    ? "text-white bg-black rounded-full m-1 px-4 "
+                    : "text-black hover:text-blue-500"
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+
+          {/* Tab Content */}
+          <div className="p-4 w-screen mt-12">
+            {/* tap 0 code here */}
+            {activeTab === 0 && (
+             <Laptops/>
+            )}
+
+            {/* tap 2 code here */}
+            {activeTab === 1 && (
+              <Desktops/>
+            )}
+
+            {/* tap 3 code here */}
+            {activeTab === 2 && <Display/>}
+          </div>
+        </div>
+       
+       <WhyAppleMac/>
+       
       </div>
 
-      <img className="rounded-3xl" src={applefirst} alt="appleimage" />
+       <Significant/>
+
+      
+      <MacEssentials/>
+
+      
     </div>
   );
 };
