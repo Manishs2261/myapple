@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useRef,useEffect} from "react";
 import applefirst from "../../assets/applefirst.jpg";
 import { IoIosArrowForward } from "react-icons/io";
 import air13 from "../../assets/air13.png";
@@ -24,12 +24,32 @@ import Display from "../Display/Display";
 import WhyAppleMac from "../WhyAppleMac/WhyAppleMac";
 import Significant from "../Significant/Significant";
 import MacEssentials from "../MacEssentials/MacEssentials";
+import xlarge from "../../assets/xlarge.mp4";
+import  appleThamnail from "../../assets/appleThamnail.png";
+
 
 const Hero = () => {
 
   const [activeTab, setActiveTab] = useState(0); // Default to first tab
 
   const tabs = ["Laptops", "Desktops", "Displays"];
+
+
+
+  const videoRef = useRef(null);
+
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  const handlePlayPause = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
 
   return (
     <div>
@@ -43,12 +63,20 @@ const Hero = () => {
       </div>
 
       <div className="justify-center w-full items-center flex p-12">
-        <img
-          className="rounded-3xl w-full h-[600px]"
-          src={applefirst}
-          alt="appleimage"
-        />
-      </div>
+  <video
+    ref={videoRef}
+    onPlay={() => setIsPlaying(true)}
+    onPause={() => setIsPlaying(false)}
+    className="rounded-3xl w-full h-[600px]"
+    src={xlarge}
+    poster={appleThamnail}
+    controls
+    alt="apple video"
+    style={{ objectFit: 'cover' }}
+    
+  />
+
+</div>
 
       <GetToKnownMac/>
 
