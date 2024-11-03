@@ -7,7 +7,7 @@ const MacEssentials = () => {
   return (
     <div>
        <div className="flex justify-between  mb-24 px-28">
-        <h1 className="text-5xl font-medium ">Mac essentials.</h1>
+        <h1 className="text-5xl font-medium mt-16">Mac essentials.</h1>
         <div className="flex items-center">
           <h5 className=" text-blue-600 ">All Mac accessories</h5>{" "}
           {/* <div className="text-blue-600"> */}
